@@ -35,17 +35,29 @@ function setAddButton(button: HTMLElement, cart: Cart, plant: Products) {
   if (plant.stock > 0) {
     id in cart.basket ? button.classList.add('button-purple') : button.classList.add('button');
     id in cart.basket ? (button.innerHTML = 'In your cart') : (button.innerHTML = 'Add to cart');
+    button.setAttribute(
+      'aria-label',
+      `${id in cart.basket ? 'Remove' : 'Add'} ${plant.title} ${id in cart.basket ? 'from' : 'to'} cart`
+    );
+    button.setAttribute('aria-pressed', (id in cart.basket).toString());
     button.addEventListener('click', function () {
       id in cart.basket ? delete cart.basket[id] : cart.add(id);
       id in cart.basket
         ? button.classList.replace('button', 'button-purple')
         : button.classList.replace('button-purple', 'button');
       id in cart.basket ? (button.innerHTML = 'In your cart') : (button.innerHTML = 'Add to cart');
+      button.setAttribute(
+        'aria-label',
+        `${id in cart.basket ? 'Remove' : 'Add'} ${plant.title} ${id in cart.basket ? 'from' : 'to'} cart`
+      );
+      button.setAttribute('aria-pressed', (id in cart.basket).toString());
       cart.updateHeader();
     });
   } else {
     button.classList.add('button-unable');
     button.innerHTML = 'Not available';
+    button.setAttribute('aria-label', `${plant.title} is not available`);
+    if (button instanceof HTMLButtonElement) button.disabled = true;
   }
 }
 
@@ -53,6 +65,7 @@ function setBuyNowButton(button: HTMLElement, cart: Cart, plant: Products) {
   const id = plant.id.toString();
   if (plant.stock > 0) {
     button.classList.add('button-light');
+    button.setAttribute('aria-label', `Buy ${plant.title} now`);
     button.addEventListener('click', function () {
       id in cart.basket ? null : cart.add(id);
       cart.updateHeader();
@@ -62,6 +75,8 @@ function setBuyNowButton(button: HTMLElement, cart: Cart, plant: Products) {
   } else {
     button.classList.add('button-unable');
     button.innerHTML = 'Not available';
+    button.setAttribute('aria-label', `${plant.title} is not available`);
+    if (button instanceof HTMLButtonElement) button.disabled = true;
   }
 }
 

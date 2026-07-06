@@ -8,6 +8,7 @@
 
   &__item {
     @include mixins.flexbox();
+    gap: 6px;
     margin-right: 10px;
 
     @media (max-width: 600px) {
@@ -17,9 +18,12 @@
 
   &__up,
   &__down {
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
     background: url('assets/svg/up.svg') center center/contain no-repeat;
+    background-color: transparent;
     opacity: 0.3;
     cursor: pointer;
     transition: 0.5s;
@@ -30,7 +34,6 @@
 
   &__down {
     transform: rotate(180deg);
-    margin-left: -2px;
     background: url('assets/svg/up.svg') center center/contain no-repeat;
   }
 }
@@ -72,15 +75,17 @@
 
 .layout {
   @include mixins.flexbox();
-  gap: 5px;
+  gap: 8px;
 
   &__portrait,
   &__landscape {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     border: solid 1px variables.$grey-medium;
     border-radius: 5px;
     background: url('assets/svg/portrait.svg') center center no-repeat;
+    background-color: transparent;
     background-size: 20px;
     opacity: 0.3;
     transition: 0.5s;
@@ -94,6 +99,7 @@
 
   &__landscape {
     background: url('assets/svg/landscape.svg') center center no-repeat;
+    background-color: transparent;
     background-size: 20px;
   }
 

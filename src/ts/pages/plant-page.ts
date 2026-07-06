@@ -3,6 +3,7 @@ import plants from '../../data/plants.json';
 import Cart from '../components/cart';
 import { setAddButton, setBuyNowButton } from '../base/helpers';
 import { PagesList } from '../base/enums';
+import { getPublicPathname } from '../base/routing';
 
 class PlantPage extends Page {
   plantId?: string;
@@ -59,6 +60,7 @@ class PlantPage extends Page {
     });
     const popupContainer = document.createElement('img');
     popupContainer.classList.add('product-page__popup-img');
+    popupContainer.alt = 'Selected product preview';
     popup.append(popupContainer);
     document.body.append(popup);
     return { popupContainer, popup };
@@ -70,18 +72,32 @@ class PlantPage extends Page {
     const container = page.querySelector('.product-page__photo-block');
     if (container instanceof HTMLElement) {
       container.style.backgroundImage = `url('assets/img/${plant.thumbnail}')`;
+      container.tabIndex = 0;
+      container.setAttribute('role', 'button');
+      container.setAttribute('aria-label', `Open large photo of ${plant.title}`);
+      const openPopup = function (url: string) {
+        popupObj.popupContainer.src = url;
+        popupObj.popupContainer.alt = `${plant.title} large preview`;
+        popupObj.popup.classList.add('product-page__popup_active');
+        document.body.classList.add('body_hold');
+      };
       container.addEventListener('click', function (e) {
         const target = e.target;
         if (target instanceof HTMLElement && target.classList.contains('product-page__photo-block')) {
           const url = target.style.backgroundImage.slice(5, -2);
-          popupObj.popupContainer.src = url;
-          popupObj.popup.classList.add('product-page__popup_active');
-          document.body.classList.add('body_hold');
+          openPopup(url);
+        }
+      });
+      container.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openPopup(container.style.backgroundImage.slice(5, -2));
         }
       });
       plant.images.forEach((pic, index) => {
         const img = document.createElement('img');
         img.src = `assets/img/${pic}`;
+        img.alt = `${plant.title} preview ${index + 1}`;
         img.classList.add('product-page__photo-mini');
         img.addEventListener('click', function (e) {
           const target = e.target;
@@ -104,7 +120,7 @@ class PlantPage extends Page {
     const linkFilter = page.querySelector('.catalog-filter-link');
     if (linkFilter instanceof HTMLAnchorElement && thisPageLink instanceof HTMLElement) {
       const newLink = new URL(window.location.href);
-      newLink.pathname = PagesList.catalogPage;
+      newLink.pathname = getPublicPathname(PagesList.catalogPage);
       newLink.searchParams.set('type', plant.type.toLowerCase());
       linkFilter.href = newLink.toString();
       linkFilter.innerText = plant.type;

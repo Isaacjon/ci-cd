@@ -23,7 +23,10 @@ class ProductCards {
       ).style.backgroundImage = `url('assets/img/${item.thumbnail}')`;
 
       getExistentElement('.product__type', productCardClone).textContent = item.type;
-      getExistentElement('.product__title', productCardClone).textContent = item.title;
+      const productTitle = getExistentElement('.product__title', productCardClone);
+      productTitle.textContent = item.title;
+      productTitle.tabIndex = 0;
+      productTitle.setAttribute('aria-label', `Open ${item.title} details`);
       getExistentElement('.product__description', productCardClone).textContent = item.description;
       getExistentElement('.product__price', productCardClone).textContent = item.price.toString();
       getExistentElement('.product__stock-num', productCardClone).textContent = item.stock.toString();
@@ -35,8 +38,14 @@ class ProductCards {
       } else {
         getExistentElement('.product__discount', productCardClone).style.display = 'none';
       }
-      getExistentElement('.product__title', productCardClone).addEventListener('click', function () {
+      productTitle.addEventListener('click', function () {
         Router.goTo(`/${item.id}`);
+      });
+      productTitle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          Router.goTo(`/${item.id}`);
+        }
       });
 
       const button = getExistentElement<HTMLElement>('button', productCardClone);

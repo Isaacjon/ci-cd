@@ -7,6 +7,7 @@ import { PageInfo } from '../base/types';
 import Router from '../router';
 import { PagesList } from '../base/enums';
 import plants from '../../data/plants.json';
+import { getAppPathname } from '../base/routing';
 
 class CartPage extends Page {
   public pageInfo: PageInfo;
@@ -118,7 +119,7 @@ class CartPage extends Page {
 
   private setQuery() {
     const currentUrl = new URL(window.location.href);
-    if (currentUrl.pathname !== PagesList.cartPage) return;
+    if (getAppPathname(currentUrl.pathname) !== PagesList.cartPage) return;
     currentUrl.searchParams.set('cart', JSON.stringify(this.cart));
     currentUrl.searchParams.set('pageInfo', JSON.stringify(this.pageInfo));
     window.history.replaceState({}, currentUrl.toString(), currentUrl);

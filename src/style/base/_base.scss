@@ -45,6 +45,15 @@ a {
   }
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[role='button']:focus-visible,
+[role='link']:focus-visible {
+  outline: 3px solid variables.$purple-medium;
+  outline-offset: 3px;
+}
+
 template.page {
   display: none;
 }
