@@ -46,7 +46,6 @@ class CartCard {
       const productTitle = getExistentElement('.product__title', card);
       productTitle.innerText = this.plant.title;
       productTitle.tabIndex = 0;
-      productTitle.setAttribute('role', 'link');
       productTitle.setAttribute('aria-label', `Open ${this.plant.title} details`);
       getExistentElement('.product__description', card).innerHTML = this.plant.description.toString();
       getExistentElement('.product__stock-value', card).innerHTML = this.plant.stock.toString();

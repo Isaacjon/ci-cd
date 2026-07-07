@@ -26,7 +26,6 @@ class ProductCards {
       const productTitle = getExistentElement('.product__title', productCardClone);
       productTitle.textContent = item.title;
       productTitle.tabIndex = 0;
-      productTitle.setAttribute('role', 'link');
       productTitle.setAttribute('aria-label', `Open ${item.title} details`);
       getExistentElement('.product__description', productCardClone).textContent = item.description;
       getExistentElement('.product__price', productCardClone).textContent = item.price.toString();

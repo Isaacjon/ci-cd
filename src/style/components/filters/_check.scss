@@ -5,10 +5,14 @@
   @include mixins.flexbox(space-between);
   position: relative;
   padding-left: 35px;
-  margin-top: 10px;
+  min-height: 28px;
+  margin-top: 12px;
 
   &__label {
     cursor: pointer;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
   }
 
   &__input {
@@ -18,10 +22,10 @@
 
   &__span {
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
-    height: 16px;
-    width: 16px;
+    height: 24px;
+    width: 24px;
     border-radius: 3px;
     border: 1px solid variables.$grey-light;
     transition: 0.5s;
@@ -30,6 +34,9 @@
   &__found {
     font-size: 0.8em;
     color: variables.$grey-medium;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
     vertical-align: baseline;
   }
 }
