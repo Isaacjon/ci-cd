@@ -15,6 +15,7 @@ function getAppPathname(pathname = window.location.pathname): string {
 function getPublicPathname(pathname: string): string {
   const appPathname = pathname.startsWith('/') ? pathname : `/${pathname}`;
   if (!usesPagesBasePath()) return appPathname;
+  if (appPathname === '/catalog') return `${pagesBasePath}/`;
   return `${pagesBasePath}${appPathname}`;
 }
 
