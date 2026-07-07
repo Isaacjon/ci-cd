@@ -5,6 +5,7 @@ import CartPage from './pages/cart-page';
 import CatalogPage from './pages/catalog-page';
 import ErrorPage from './pages/error-page';
 import PlantPage from './pages/plant-page';
+import { getAppPathname, getPublicPathname } from './base/routing';
 
 class Router {
   static catalogPage: CatalogPage;
@@ -21,7 +22,8 @@ class Router {
 
   static render(pathname: string) {
     // console.log('render:', pathname);
-    switch (pathname) {
+    const appPathname = getAppPathname(pathname);
+    switch (appPathname) {
       case PagesList.catalogPage:
         Router.catalogPage.draw();
         break;
@@ -32,8 +34,8 @@ class Router {
         this.goTo(PagesList.catalogPage);
         break;
       default:
-        if (isPlantsId(pathname)) {
-          Router.plantPage.draw(pathname.slice(1));
+        if (isPlantsId(appPathname)) {
+          Router.plantPage.draw(appPathname.slice(1));
         } else {
           Router.errorPage.draw();
         }
@@ -43,22 +45,37 @@ class Router {
   }
 
   static goTo(pageId: string) {
-    window.history.pushState({ pageId }, pageId, pageId);
-    Router.render(pageId);
+    const url = new URL(pageId, window.location.origin);
+    const appPathname = getAppPathname(url.pathname);
+    const publicPathname = `${getPublicPathname(appPathname)}${url.search}${url.hash}`;
+    window.history.pushState({ pageId: appPathname }, appPathname, publicPathname);
+    Router.render(appPathname);
     window.scrollTo(0, 0);
   }
 
   static changeLinks() {
-    const links = document.querySelectorAll('[href^="/"]');
+    const links = document.querySelectorAll('a[href]');
     links.forEach((link) => {
       if (!link.classList.contains('link-changed')) {
         link.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (
-            link instanceof HTMLAnchorElement &&
-            (new URL(link.href).pathname !== '/catalog' || new URL(window.location.href).pathname !== '/catalog')
-          ) {
-            Router.goTo(new URL(link.href).pathname);
+          if (!(link instanceof HTMLAnchorElement)) return;
+          if (link.getAttribute('href')?.startsWith('#')) return;
+          if (link.origin !== window.location.origin) return;
+
+          const linkUrl = new URL(link.href);
+          const linkPathname = getAppPathname(linkUrl.pathname);
+          const currentPathname = getAppPathname(window.location.pathname);
+          const canRender =
+            linkPathname === '/' ||
+            linkPathname === PagesList.catalogPage ||
+            linkPathname === PagesList.cartPage ||
+            isPlantsId(linkPathname);
+
+          if (canRender) {
+            e.preventDefault();
+            if (linkPathname !== currentPathname || linkUrl.search !== window.location.search) {
+              Router.goTo(`${linkPathname}${linkUrl.search}${linkUrl.hash}`);
+            }
           }
         });
         link.classList.add('link-changed');
@@ -68,9 +85,9 @@ class Router {
 
   static startRouter() {
     window.addEventListener('popstate', () => {
-      Router.render(new URL(window.location.href).pathname);
+      Router.render(getAppPathname(new URL(window.location.href).pathname));
     });
-    const page = new URL(window.location.href).pathname;
+    const page = getAppPathname(new URL(window.location.href).pathname);
     Router.render(page);
   }
 }

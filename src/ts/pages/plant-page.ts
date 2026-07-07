@@ -3,6 +3,7 @@ import plants from '../../data/plants.json';
 import Cart from '../components/cart';
 import { setAddButton, setBuyNowButton } from '../base/helpers';
 import { PagesList } from '../base/enums';
+import { getPublicPathname } from '../base/routing';
 
 class PlantPage extends Page {
   plantId?: string;
@@ -104,7 +105,7 @@ class PlantPage extends Page {
     const linkFilter = page.querySelector('.catalog-filter-link');
     if (linkFilter instanceof HTMLAnchorElement && thisPageLink instanceof HTMLElement) {
       const newLink = new URL(window.location.href);
-      newLink.pathname = PagesList.catalogPage;
+      newLink.pathname = getPublicPathname(PagesList.catalogPage);
       newLink.searchParams.set('type', plant.type.toLowerCase());
       linkFilter.href = newLink.toString();
       linkFilter.innerText = plant.type;

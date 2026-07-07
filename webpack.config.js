@@ -17,7 +17,7 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: devMode ? '/' : './',
     clean: true,
     filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/[name][ext]',
@@ -31,6 +31,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      filename: 'index.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: '404.html',
     }),
 
     new MiniCssExtractPlugin({
@@ -86,18 +92,20 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
+              gifsicle: {
+                enabled: false,
+              },
               mozjpeg: {
+                enabled: false,
                 progressive: true,
               },
               optipng: {
                 enabled: false,
               },
               pngquant: {
+                enabled: false,
                 quality: [0.65, 0.9],
                 speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
               },
               webp: {
                 quality: 75,
