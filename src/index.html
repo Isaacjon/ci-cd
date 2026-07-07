@@ -24,7 +24,7 @@
             <li class="nav__item"><a class="nav__link" href="#promo">Promo code</a></li>
             <li class="nav__item"><a class="nav__link" href="#contacts">Contacts</a></li>
           </ul>
-          <a class="cart" href="/cart">
+          <a class="cart" href="/cart" aria-label="Open shopping cart">
             <span class="cart__num" id="header-amount">0</span>
           </a>
           <div class="total-amount">
@@ -39,7 +39,7 @@
     </main>
     <section id="promo" class="promo">
       <div class="container">
-        <img class="promo__photo" src="assets/img/eucalypt.png" alt="eucalypt">
+        <img class="promo__photo" src="assets/img/eucalypt.png" alt="Eucalypt plant">
         <div class="promo__container">
           <h3 class="promo__title">Get <span>10% OFF</span> on your purchase</h3>
           <div class="promo__descr">Use promo codes:</div>
@@ -53,29 +53,29 @@
         <div class="footer__column">
           <p class="footer__title">Contacts</p>
           <ul class="footer__list">
-            <li class="footer__item"><a href="https://yumentsel.github.io/rsschool-cv/" target="_blank">Yuliya Mentsel</a>
+            <li class="footer__item"><a href="https://yumentsel.github.io/rsschool-cv/" target="_blank" rel="noopener noreferrer">Yuliya Mentsel</a>
             </li>
-            <li class="footer__item"><a href="https://lexarudak.github.io/rsschool-cv/" target="_blank">Aliaksei Rudak</a>
+            <li class="footer__item"><a href="https://lexarudak.github.io/rsschool-cv/" target="_blank" rel="noopener noreferrer">Aliaksei Rudak</a>
             </li>
           </ul>
         </div>
         <div class="footer__column">
           <p class="footer__title">GitHub</p>
           <ul class="footer__list">
-            <li class="footer__item"><a href="https://github.com/YuMentsel" target="_blank">Yuliya Mentsel</a>
+            <li class="footer__item"><a href="https://github.com/YuMentsel" target="_blank" rel="noopener noreferrer">Yuliya Mentsel</a>
             </li>
-            <li class="footer__item"><a href="https://github.com/lexarudak" target="_blank">Aliaksei Rudak</a>
+            <li class="footer__item"><a href="https://github.com/lexarudak" target="_blank" rel="noopener noreferrer">Aliaksei Rudak</a>
             </li>
           </ul>
         </div>
         <div class="footer__column">
           <p class="footer__title">RS School</p>
           <ul class="footer__list">
-            <li class="footer__item"><a href="https://rs.school/js/" target="_blank"><img class="rs-school__img" alt="RS School logo" src="./assets/svg/rs_school.svg" width="80"></a>
+            <li class="footer__item"><a href="https://rs.school/js/" target="_blank" rel="noopener noreferrer"><img class="rs-school__img" alt="RS School logo" src="./assets/svg/rs_school.svg" width="80"></a>
             </li>
             <li class="footer__item"><span>2022</span>
             </li>
-            <li class="footer__item design-info"><a href="https://www.behance.net/gallery/157498329/Online-store-of-indoor-plants/modules/888571069" target="_blank">Designed by Romana Chaban</a>
+            <li class="footer__item design-info"><a href="https://www.behance.net/gallery/157498329/Online-store-of-indoor-plants/modules/888571069" target="_blank" rel="noopener noreferrer">Designed by Romana Chaban</a>
             </li>
           </ul>
         </div>
@@ -178,19 +178,19 @@
           <div class="range">
             <div class="range__value">
               <span>min</span>
-              <input type="number" class="input-min" value="1" max="100">
+              <input type="number" class="input-min" value="1" max="100" aria-label="Minimum price">
               <span>$</span>
               <div class="range__separator">-</div>
               <span>max</span>
-              <input type="number" class="input-max" value="100" max="100">
+              <input type="number" class="input-max" value="100" max="100" aria-label="Maximum price">
               <span>$</span>
             </div>
             <div class="range__slider slider">
               <div class="slider__progress"></div>
             </div>
             <div class="range__range-input">
-              <input type="range" class="range-min" min="1" max="106" value="1" step="1">
-              <input type="range" class="range-max" min="1" max="100" value="100" step="1">
+              <input type="range" class="range-min" min="1" max="106" value="1" step="1" aria-label="Minimum price range">
+              <input type="range" class="range-max" min="1" max="100" value="100" step="1" aria-label="Maximum price range">
             </div>
           </div>
         </div>
@@ -208,17 +208,17 @@
           <div class="range">
             <div class="range__value">
               <span>min</span>
-              <input type="number" class="input-min" value="1" max="65">
+              <input type="number" class="input-min" value="1" max="65" aria-label="Minimum stock">
               <div class="range__separator">-</div>
               <span>max</span>
-              <input type="number" class="input-max" value="65" max="65">
+              <input type="number" class="input-max" value="65" max="65" aria-label="Maximum stock">
             </div>
             <div class="range__slider slider">
               <div class="slider__progress"></div>
             </div>
             <div class="range__range-input">
-              <input type="range" class="range-min" min="1" max="69" value="1" step="1">
-              <input type="range" class="range-max" min="1" max="65" value="65" step="1">
+              <input type="range" class="range-min" min="1" max="69" value="1" step="1" aria-label="Minimum stock range">
+              <input type="range" class="range-max" min="1" max="65" value="65" step="1" aria-label="Maximum stock range">
             </div>
           </div>
         </div>
@@ -234,30 +234,31 @@
           <div class="products__sort-parameters">
             <div class="sort">
               <div class="sort__item">Sort by rating
-                <div data-sort=rating-up class="sort__up sort-control"></div>
-                <div data-sort=rating-down class="sort__down sort-control"></div>
+                <button type="button" data-sort=rating-up class="sort__up sort-control" aria-label="Sort by rating ascending"></button>
+                <button type="button" data-sort=rating-down class="sort__down sort-control" aria-label="Sort by rating descending"></button>
               </div>
               <div class="sort__item">Sort by price
-                <div data-sort=price-up class="sort__up sort-control"></div>
-                <div data-sort=price-down class="sort__down sort-control"></div>
+                <button type="button" data-sort=price-up class="sort__up sort-control" aria-label="Sort by price ascending"></button>
+                <button type="button" data-sort=price-down class="sort__down sort-control" aria-label="Sort by price descending"></button>
               </div>
             </div>
             <div class="found-products">Found: <div><span class="found-products__num">24</span><span class="found-products__num"> / 24</span></div></div>
-            <input type="text" placeholder="Search" class="sort-input">
+            <label class="visually-hidden" for="catalog-search">Search products</label>
+            <input id="catalog-search" type="text" placeholder="Search" class="sort-input">
           </div>
     
           <div class="products__layout layout">
-            <div class="layout__portrait active"></div>
-            <div class="layout__landscape"></div>
+            <button type="button" class="layout__portrait active" aria-label="Use portrait product layout"></button>
+            <button type="button" class="layout__landscape" aria-label="Use landscape product layout"></button>
           </div>
         </div>
     
         <div class="products__container">Not Found</div>
       </div>
-      <div class="catalog__filter-button filter-button">
+      <button type="button" class="catalog__filter-button filter-button" aria-label="Toggle filters">
         <span class="filter-button__round"></span>
         <span class="filter-button__stripe"></span>
-      </div>
+      </button>
       <div class="catalog__filter-popup">
       </div>
     </section>
@@ -359,17 +360,17 @@
               <div class="full-cart-page__pagination">
                 <div class="full-cart-page__pagination-pages">
                   <span class="full-cart-page__pagination-text">Page</span>
-                  <button class="button-arrow" id="paginationPageDown">&lt;</button>
-                  <input class="amount-number" id="paginationCurrentPage" type="number" min="1" max="10" value="1" disabled>
-                  <button class="button-arrow" id="paginationPageUp">&gt;</button>
+                  <button class="button-arrow" id="paginationPageDown" type="button" aria-label="Previous cart page">&lt;</button>
+                  <input class="amount-number" id="paginationCurrentPage" type="number" min="1" max="10" value="1" disabled aria-label="Current cart page">
+                  <button class="button-arrow" id="paginationPageUp" type="button" aria-label="Next cart page">&gt;</button>
                   <span class="full-cart-page__pagination-text">of</span>
-                  <input class="amount-number" id="pagination-max-pages" type="number" min="1" max="10" value="2" disabled>
+                  <input class="amount-number" id="pagination-max-pages" type="number" min="1" max="10" value="2" disabled aria-label="Total cart pages">
                 </div>
                 <div class="full-cart-page__pagination-items">
                   <span class="full-cart-page__pagination-text">Items on page:</span>
-                  <button class="button-arrow" id="pagination-items-minus">&lt;</button>
-                  <input class="amount-number" id="pagination-items" type="text" disabled>
-                  <button class="button-arrow" id="pagination-items-plus">&gt;</button>
+                  <button class="button-arrow" id="pagination-items-minus" type="button" aria-label="Show fewer items per page">&lt;</button>
+                  <input class="amount-number" id="pagination-items" type="text" disabled aria-label="Items per page">
+                  <button class="button-arrow" id="pagination-items-plus" type="button" aria-label="Show more items per page">&gt;</button>
                 </div>
               </div>
               <a class="clean-card-btn" href="/cart">Clean cart</a>
@@ -380,7 +381,8 @@
           </div>
           <div class="full-cart-page__panel" id="bill">
             <div class="full-cart-page__promo">
-              <input class="full-cart-page__promo-input" type="text" placeholder="PROMO CODE">
+              <label class="visually-hidden" for="promo-code">Promo code</label>
+              <input class="full-cart-page__promo-input" id="promo-code" type="text" placeholder="PROMO CODE">
             </div>
             <div class="full-cart-page__info">
               <p class="full-cart-page__subtitle subtitle">
@@ -401,9 +403,9 @@
                 <span id="bill-total"></span>
               </p>
             </div>
-            <span class="full-cart-page__buy-button button">
+            <button class="full-cart-page__buy-button button" type="button">
               Proceed to checkout
-            </span>
+            </button>
             <a class="full-cart-page__catalog-button button-light" href="/catalog">
               Continue shopping
             </a>
@@ -430,9 +432,9 @@
                   <span class="product__price"></span>
                   <span class="product__old-price"></span>
                   <div class="product__amount">
-                    <button class="button-arrow product__left-arrow">&lt;</button>
-                    <input class="product__amount-number amount-number" type="number" min="0" value="1" disabled>
-                    <button class="button-arrow product__right-arrow">&gt;</button>
+                    <button class="button-arrow product__left-arrow" type="button" aria-label="Decrease item quantity">&lt;</button>
+                    <input class="product__amount-number amount-number" type="number" min="0" value="1" disabled aria-label="Item quantity">
+                    <button class="button-arrow product__right-arrow" type="button" aria-label="Increase item quantity">&gt;</button>
                   </div>
                 </div>
               </div>
@@ -452,40 +454,40 @@
   </template>
   <!-- modal -->
   <template id="purchase">
-    <div class="purchase-modal__wrapper">
+    <div class="purchase-modal__wrapper" role="dialog" aria-modal="true" aria-labelledby="purchase-title">
       <form class="purchase-form">
-        <h2 class="purchase-form__title">Personal details</h2>
-        <span class="purchase-form__text">Name</span>
-        <input class="purchase-form__input" id="purchaseName" type="text" placeholder="Darya Ivanova">
-        <span class="purchase-form__error" id="purchaseNameError">invalid name entered</span>
-        <span class="purchase-form__text">Phone number</span>
-        <input class="purchase-form__input" id="purchasePhone" type="tel" placeholder="+375 29 851 82 13">
-        <span class="purchase-form__error" id="purchasePhoneError">invalid phone entered</span>
-        <span class="purchase-form__text">Delivery address</span>
+        <h2 class="purchase-form__title" id="purchase-title">Personal details</h2>
+        <label class="purchase-form__text" for="purchaseName">Name</label>
+        <input class="purchase-form__input" id="purchaseName" type="text" placeholder="Darya Ivanova" aria-describedby="purchaseNameError">
+        <span class="purchase-form__error" id="purchaseNameError" aria-live="polite">invalid name entered</span>
+        <label class="purchase-form__text" for="purchasePhone">Phone number</label>
+        <input class="purchase-form__input" id="purchasePhone" type="tel" placeholder="+375 29 851 82 13" aria-describedby="purchasePhoneError">
+        <span class="purchase-form__error" id="purchasePhoneError" aria-live="polite">invalid phone entered</span>
+        <label class="purchase-form__text" for="purchaseAddress">Delivery address</label>
         <input class="purchase-form__input" id="purchaseAddress" type="text"
-          placeholder="Belarus, Minsk, Odintsova">
-        <span class="purchase-form__error" id="purchaseAddressError">invalid address entered</span>
-        <span class="purchase-form__text">Email</span>
-        <input class="purchase-form__input" id="purchaseEmail" type="email" placeholder="ivanova@gmail.com">
-        <span class="purchase-form__error" id="purchaseEmailError">invalid email entered</span>
+          placeholder="Belarus, Minsk, Odintsova" aria-describedby="purchaseAddressError">
+        <span class="purchase-form__error" id="purchaseAddressError" aria-live="polite">invalid address entered</span>
+        <label class="purchase-form__text" for="purchaseEmail">Email</label>
+        <input class="purchase-form__input" id="purchaseEmail" type="email" placeholder="ivanova@gmail.com" aria-describedby="purchaseEmailError">
+        <span class="purchase-form__error" id="purchaseEmailError" aria-live="polite">invalid email entered</span>
         <div class="purchase-form__pay-card">
           <div class="purchase-form__pay-card-header">
             <p class="subtitle">Credit card details</p>
             <div class="purchase-form__card-icon"></div>
           </div>
-          <span class="purchase-form__text">Card number</span>
-          <input class="purchase-form__input" id="payCardNumber" type="text" placeholder="1223 1234 1234 1234">
-          <span class="purchase-form__error" id="payCardNumberError">invalid card number entered</span>
+          <label class="purchase-form__text" for="payCardNumber">Card number</label>
+          <input class="purchase-form__input" id="payCardNumber" type="text" placeholder="1223 1234 1234 1234" aria-describedby="payCardNumberError">
+          <span class="purchase-form__error" id="payCardNumberError" aria-live="polite">invalid card number entered</span>
           <div class="purchase-form__block">
             <div class="purchase-form__date">
-              <span class="purchase-form__text">Expiration date</span>
-              <input class="purchase-form__input" id="payCardDate" type="text" placeholder="07 / 25">
-              <span class="purchase-form__error" id="payCardDateError">invalid date entered</span>
+              <label class="purchase-form__text" for="payCardDate">Expiration date</label>
+              <input class="purchase-form__input" id="payCardDate" type="text" placeholder="07 / 25" aria-describedby="payCardDateError">
+              <span class="purchase-form__error" id="payCardDateError" aria-live="polite">invalid date entered</span>
             </div>
             <div class="purchase-form__cvv">
-              <span class="purchase-form__text">CVV</span>
-              <input class="purchase-form__input" id="payCardCvv" type="number" placeholder="123">
-              <span class="purchase-form__error" id="payCardCvvError">invalid CVV entered</span>
+              <label class="purchase-form__text" for="payCardCvv">CVV</label>
+              <input class="purchase-form__input" id="payCardCvv" type="number" placeholder="123" aria-describedby="payCardCvvError">
+              <span class="purchase-form__error" id="payCardCvvError" aria-live="polite">invalid CVV entered</span>
             </div>
           </div>
         </div>

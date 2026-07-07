@@ -43,7 +43,11 @@ class CartCard {
       getExistentElement('.cart-list__number', card).innerText = this.number.toString();
       getExistentElement('.product__rating', card).innerHTML = this.plant.rating.toString() + '<span>&#9734;</span>';
       getExistentElement('.product__type', card).innerText = this.plant.type;
-      getExistentElement('.product__title', card).innerText = this.plant.title;
+      const productTitle = getExistentElement('.product__title', card);
+      productTitle.innerText = this.plant.title;
+      productTitle.tabIndex = 0;
+      productTitle.setAttribute('role', 'link');
+      productTitle.setAttribute('aria-label', `Open ${this.plant.title} details`);
       getExistentElement('.product__description', card).innerHTML = this.plant.description.toString();
       getExistentElement('.product__stock-value', card).innerHTML = this.plant.stock.toString();
       getExistentElement('.product', card).addEventListener(
@@ -56,6 +60,12 @@ class CartCard {
         },
         false
       );
+      productTitle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          Router.goTo(this.link);
+        }
+      });
 
       this.countContainer.value = this.count.toString();
       this.priceContainer.innerHTML = '$' + (this.plant.price * this.count).toString();
